@@ -1,0 +1,17 @@
+button {
+    border-radius: 4px;
+
+}
+
+.primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    /* border: 1px solid var(--text-color); */
+    border: none;
+}
+
+.secondary {
+    background-color: var(--background-2);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
