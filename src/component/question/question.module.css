@@ -1,0 +1,78 @@
+/* Container and main page/component */
+.container {
+    width: 90%;
+    margin: 2rem auto;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-bottom: 3rem;
+    box-sizing: border-box;
+    color: var(--primary-color);
+}
+
+.above,
+.main {
+    color: var(--primary-color);
+}
+
+.above {
+    text-align: right;
+    width: 100%;
+    padding: 1rem 1rem 0 0;
+    font-size: 14px;
+
+}
+
+.bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1.2rem;
+}
+
+/* Question 1 ----------------------------------------------------------------------------------------------------------------- */
+
+form>div {
+    border: 1px solid rgb(226, 223, 223);
+    width: 90%;
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+    box-sizing: border-box;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selected {
+    border: 2px solid var(--primary-color);
+}
+
+label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    height: fit-content;
+}
+
+label>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 99px;
+    border: 1px solid var(--primary-color);
+}
+
+/* Question 2----------------------------------------------------------------------------------------------- */

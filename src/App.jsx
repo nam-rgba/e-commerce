@@ -1,5 +1,6 @@
 import { Routes, Route} from 'react-router-dom'
-import Term from './pages/page1/Term'
+import Layout from './pages/quiz/Question'
+import Term from './pages/term/Term'
 
 
 function App() {
@@ -7,7 +8,10 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/*" element={<Term />} />
+      <Route path="/" element={<Term />} />
+      <Route path="questions" element={<Layout />}>
+
+      </Route>
     </Routes>
   )
 }
