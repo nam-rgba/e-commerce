@@ -3,56 +3,24 @@ import style from './question.module.css';
 import { addAnswer } from '../../state/surveySlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function Question2(){
+// eslint-disable-next-line react/prop-types
+export default function Question2({handleCheckDone}){
     const dispatch = useDispatch();
     const answer = useSelector(state => state.survey.answers);
     const languages=['English','Vietnam','Chinese','Japanese','Spanish','French'];
-    const [selectedLang, setSelectedLang]=useState([]);
+    const [selectedLang, setSelectedLang]=useState(answer[1]||[]);
     const [selectAll, setSelectAll]=useState(false);
 
-    // useEffect(()=>{
-    //     if(answer[1]){
-    //         setSelectedLang(answer[1]);
-    //     }
-    // },[answer])
 
-
-
-
-    // console.log(selectedLang)
-    // const handleLanguageChange = (e)=>{
-    //     const {value, checked}=e.target;
-    //     if(!checked){
-    //         setSelectedLang(selectedLang.filter((lang)=>lang!==value));
-    //         setSelectAll(false);
-    //     }else{
-    //         setSelectedLang(selectedLang=>[...selectedLang, value]);
-    //     }
-
-    //     dispatch(addAnswer({questionId: 0, answer: selectedLang}));
-
-    // }
-    // const handleSelectAll = (event) => {
-    //     if (event.target.checked) {
-    //     setSelectedLang(languages);
-    //     } else {
-    //     setSelectedLang([]);
-    //     }
-    //     setSelectAll(!selectAll);
-
-    //     dispatch(addAnswer({questionId: 0, answer: selectedLang}));
-    // };
-
-
-        useEffect(() => {
+    useEffect(() => {
         if (answer[1]) {
             setSelectedLang(answer[1]);
         }
     }, [answer]);
 
     useEffect(() => {
-        // Dispatch the updated selectedLang to Redux store
-        dispatch(addAnswer({ questionId: 1, answer: selectedLang })); // Assuming the question ID is 1
+        
+        dispatch(addAnswer({ questionId: 1, answer: selectedLang })); 
     }, [selectedLang, dispatch]);
 
     const handleLanguageChange = (e) => {
@@ -63,6 +31,9 @@ export default function Question2(){
             setSelectedLang((prevSelectedLang) => [...prevSelectedLang, value]);
         }
         setSelectAll(languages.length === selectedLang.length + 1);
+        if(selectedLang.length > 0){
+            handleCheckDone(true);
+        }
     };
 
     const handleSelectAll = (event) => {
@@ -75,6 +46,7 @@ export default function Question2(){
     };
 
     const string = selectedLang.length > 0 ? selectedLang.join(', ') : 'Choose your language';
+
 
 
     return (

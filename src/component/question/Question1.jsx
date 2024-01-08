@@ -4,10 +4,11 @@ import { FaCircleCheck } from "react-icons/fa6";
 import { addAnswer } from '../../state/surveySlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function Question1(){
+// eslint-disable-next-line react/prop-types
+export default function Question1({handleCheckDone}){
     const dispatch = useDispatch();
     const answers = useSelector(state => state.survey.answers);
-    const [roleSelected, setRoleSelected]=useState('');
+    const [roleSelected, setRoleSelected]=useState(answers[0]||'');
     const roles = ["Mother", "Father", "Prefer not to say"];
 
 
@@ -19,7 +20,11 @@ export default function Question1(){
 
     const handleSelectRole = (role) =>{
         setRoleSelected(role);
+        
         dispatch(addAnswer({questionId: 0, answer: role}));
+        if(role!==''){
+            handleCheckDone(true);
+        }
     }
 
     return (

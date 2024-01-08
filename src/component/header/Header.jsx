@@ -4,8 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
-export default function Header({pageNumber}){
-    console.log(pageNumber)
+export default function Header(){
     return (
         <div className={style.header}>
             <div className={style.left}>
