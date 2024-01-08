@@ -3,7 +3,7 @@ import style from './button.module.css';
 export default function Button({ children, ...props }) {
     const {tag, width, onClickCallback} = props;
     return (
-        <button className={tag==='primary'?style.primary:style.secondary} style={{width}} onClick={() => onClickCallback()} >
+        <button className={style[`${tag}`]} style={{width}} onClick={() => onClickCallback()}  >
          {children}
         </button>
     )

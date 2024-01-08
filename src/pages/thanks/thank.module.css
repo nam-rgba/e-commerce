@@ -1,0 +1,103 @@
+.container {
+    width: 90%;
+    margin: 2rem auto;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    padding: 2rem 25%;
+    padding-bottom: 3rem;
+    box-sizing: border-box;
+    color: #3d3d3d;
+    min-height: 90vh;
+}
+
+h2 {
+    text-align: center;
+    width: 90%;
+    font-size: 22px;
+}
+
+.info {
+    font-size: 16px;
+    margin-bottom: 2rem;
+}
+
+.contact span {
+    font-weight: 700;
+}
+
+.contact {
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--background-2);
+    color: var(--primary-color);
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.user>div {
+    border: none;
+    border-radius: 1px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+.user>div>svg {
+    margin-right: 0.6rem;
+}
+
+.user>input {
+    padding: 0.8rem;
+    width: 100%;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-radius: 5px;
+}
+
+.term {
+    margin-bottom: 1rem;
+}
+
+.term>input {
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--primary-color);
+    font-size: 14px;
+}
+
+.note {
+    font-style: italic;
+    font-size: 14px;
+}
+
+.note>span {
+    font-weight: 600;
+}
+
+.ifques {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 2rem;
+}
+
+.action {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border: none;
+}

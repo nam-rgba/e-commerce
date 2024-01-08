@@ -15,3 +15,9 @@ button {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
 }
+
+.unenable {
+    background-color: var(--unenable-color);
+    color: var(--text-color);
+    border: none;
+}
