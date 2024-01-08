@@ -2,9 +2,11 @@ import style from './header.module.css';
 import { MdGamepad } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 export default function Header({page}){
+    const navigator = useNavigate();
 
     let link='/questions'
     if(page==2){
@@ -14,7 +16,7 @@ export default function Header({page}){
     }
     return (
         <div className={style.header}>
-            <div className={style.left}>
+            <div className={style.left} onClick={()=>navigator('/')}>
                 <MdGamepad size={40} />
                 <div>
                     FAMILIES USING TECHNOLOGY SURVEY

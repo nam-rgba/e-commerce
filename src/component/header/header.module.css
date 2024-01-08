@@ -22,6 +22,7 @@
     flex-direction: row;
     width: 30%;
     /* line-height: 18px; */
+    cursor: pointer;
 }
 
 .right {
