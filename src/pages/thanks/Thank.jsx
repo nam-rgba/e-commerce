@@ -142,10 +142,13 @@ export default function Thank(){
                         your survey answers.
                     </p>
 
+                    <div className={style.action}>
+                        <Button tag={submit} width={'58%'} type={'submit'} >Submit</Button>
+                    </div>
                 </form>
                     <div className={style.action}>
-                        <Button tag={'secondary'} width={'38%'} type={'button'} onClickCallback={back}>Back to survey</Button>
-                        <Button tag={submit} width={'58%'} type={'submit'} >Submit</Button>
+                        <Button tag={'secondary'} width={'58%'} type={'button'} onClickCallback={back}>Back to survey</Button>
+
                     </div>
             </div>
             <Footer/>
