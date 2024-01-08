@@ -1,9 +1,21 @@
-import style from './exits.module.css'
 import Button from '../../component/button/Button'
 import Header from '../../component/header/Header'
 import Footer from '../../component/footer/Footer'
 
+import style from './exits.module.css'
+
+import { useNavigate } from 'react-router-dom'
+
 export default function Exits() {
+    const navigate=useNavigate();
+    const close = () => {
+        window.opener = null;
+        window.open("about:blank", "_self");
+        window.close();
+    }
+    const back = () => {
+        navigate('/questions');
+    }
     return (
         <>
             <Header />
@@ -27,8 +39,8 @@ export default function Exits() {
                 </div>
 
                 <div className={style.actions}>
-                    <Button tag={'secondary'} width={'60%'}>I have changed my mind</Button>
-                    <Button tag={'primary'} width={'60%'}>Back to the survey</Button>
+                    <Button tag={'secondary'} width={'60%'} onClickCallback={close}>I have changed my mind</Button>
+                    <Button tag={'primary'} width={'60%'} onClickCallback={back}>Back to the survey</Button>
                 </div>
             </div>
             <Footer/>

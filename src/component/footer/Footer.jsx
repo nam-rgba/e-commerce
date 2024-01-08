@@ -4,7 +4,7 @@ export default function Footer(){
 
     return (
         <div className={style.footer}>
-            in collaboration with the GLI
+            in collaboration with Gmoft
         </div>
     )
 }

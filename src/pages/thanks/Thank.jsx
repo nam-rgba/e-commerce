@@ -7,10 +7,10 @@ import style from './thank.module.css'
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-import { useEffect, useRef, useState } from 'react';
+import {  useEffect, useRef, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-
-import { setUser } from "../../state/userSlice";
+import { useNavigate } from "react-router-dom";
+import { setName, setMail, setSumary, setFC } from "../../state/userSlice";
 import { useDownloadData } from "../../services/useDownloadData";
 
 export default function Thank(){
@@ -21,10 +21,10 @@ export default function Thank(){
     const [submit, setSubmit] = useState('unenable');
     const [receiveCheck, setReceiveCheck] = useState(false); // Receive sumamry
     const [futureCheck, setFutureCheck] = useState(false); // Future contact
+    const navigate = useNavigate();
 
     const name=useRef();
     const email=useRef();
-
 
 
     useEffect(()=>{
@@ -36,28 +36,59 @@ export default function Thank(){
     },[user])
 
     // Check condition to enable submit button
-    const checkSubmit=()=>{
-        // Normally, user just need to check that receive sumary to submit
-        // Future contact is optional
-        if(email!==''&& name!=='' && receiveCheck){
-            setSubmit('unenable');
-        }else{
-            setSubmit('primary');
+    const checkSubmit = (re) => {
+
+        const isEmailFilled = email.current.value.trim() !== '';
+
+        const isNameFilled = name.current.value.trim() !== '';
+
+        
+        if (isNameFilled===true && isEmailFilled===true && re) {
+            setSubmit('primary'); 
+        } else {
+            setSubmit('unenable'); 
         }
+    };
+
+    const handleChangeName = (e) => {
+        dispatch(setName(e.target.value));
+        checkSubmit();
+    }
+
+    const handleChangeEmail = (e) => {
+        dispatch(setMail(e.target.value));
+        checkSubmit();
+    }
+
+    const hanndleCheckFuture = () => {
+        const newFC = !futureCheck;
+        setFutureCheck(newFC);
+        dispatch(setFC(newFC));
     }
 
     // Handle when user checked receive sumary => enable submit button
     const handleReceiveChecked=()=>{
-        setReceiveCheck(!receiveCheck);
-        checkSubmit();
+        const newRC=! receiveCheck;
+        setReceiveCheck(newRC);
+        checkSubmit(newRC);
+        dispatch(setSumary(newRC));
     }
 
 
+
+    // Big problem: dispatch function not work correctly if change whole 4 demensions
+    // =>> Cannot download correctly data
+    // =>> Seperate to small dispatch function
+
     // Submit user information
-    const handleSubmitUserInformation=(e)=>{
+    const handleSubmitUserInformation= (e)=>{
         e.preventDefault();
-        dispatch(setUser({name: name.current.value, email: email.current.value, receiveSumary: receiveCheck, futureContact: futureCheck}));
         data();
+        navigate('/end');
+    }
+
+    const back=()=>{
+        navigate('/questions')
     }
 
     return(
@@ -77,7 +108,7 @@ export default function Thank(){
                 <h4>Interested in a summary of the survey?</h4>
 
                 <div className={style.info}>
-                    If you would like to receive a summary of the survey findings OR if you are happy to be contacted by Gameloft about future research, please provide your details below and tick the relevant box/es.
+                    If you would like to receive a summary of the survey findings OR if you are happy to be contacted by Gmoft about future research, please provide your details below and tick the relevant box/es.
                     <br /><br />If you change your mind, you can always opt-out at a later date.
                 </div>
 
@@ -87,14 +118,14 @@ export default function Thank(){
                             <FaUser size={16}/>
                             Your Name
                         </div>
-                        <input type="text" name="name" ref={name} />
+                        <input type="text" name="name" ref={name} onChange={handleChangeName} />
                     </label>
                     <label className={style.user}>
                         <div>
                             <MdEmail size={20}/>
                             Email
                         </div>
-                        <input type="email" name="email" ref={email}/>
+                        <input type="email" name="email" ref={email} onChange={handleChangeEmail}/>
                     </label>
 
                     <label className={style.term}>
@@ -102,7 +133,7 @@ export default function Thank(){
                         I agree to receive a summary of the survey findings.
                     </label>
                     <label className={style.term}>
-                        <input type="checkbox" checked={futureCheck} onChange={()=>setFutureCheck(!futureCheck)} />
+                        <input type="checkbox" checked={futureCheck} onChange={hanndleCheckFuture} />
                         I agree to be contacted by Gmoft about future research.
                     </label>
 
@@ -111,13 +142,14 @@ export default function Thank(){
                         your survey answers.
                     </p>
 
+                </form>
                     <div className={style.action}>
-                        <Button tag={'secondary'} width={'38%'}>Back to survey</Button>
+                        <Button tag={'secondary'} width={'38%'} type={'button'} onClickCallback={back}>Back to survey</Button>
                         <Button tag={submit} width={'58%'} type={'submit'} >Submit</Button>
                     </div>
-                </form>
             </div>
             <Footer/>
         </>
     )
 }
+

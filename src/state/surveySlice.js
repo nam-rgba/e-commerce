@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    currentQuestion: 0,
+    currentQuestion: 1,
     answers:{
         0:'',
         1:'',
@@ -24,5 +24,6 @@ export const surveySlice = createSlice({
 })
 
 export const {addAnswer} = surveySlice.actions;
+export const {setCurrentQuestion} = surveySlice.actions;
 
 export default surveySlice.reducer; 

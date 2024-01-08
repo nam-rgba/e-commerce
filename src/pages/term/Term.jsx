@@ -1,14 +1,33 @@
 import Footer from "../../component/footer/Footer";
 import Header from "../../component/header/Header";
 import Button from "../../component/button/Button";
+
 import style from './term.module.css'
 import info from '../../assets/information.json'
 
+import { useRef, useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha"
+
 export default function Term(){
     const data = info.information;
+    const captchaRef = useRef(null);
+    const navigate = useNavigate();
+    const [err, setErr]=useState(false);
+    
+
+    const handleVerify = () => {
+        const token = captchaRef.current.getValue();
+        if(token){
+            captchaRef.current.reset();
+            navigate('/questions')
+        }else{
+            setErr(true);
+        }
+    }
     return (
         <div>
-            <Header pageNumber={1}/>
+            <Header page={1}/>
             <div className={style.content}>
                 <div className={style.thanks}>
                     <h2>Thank you for your interest</h2>
@@ -30,9 +49,15 @@ export default function Term(){
                     ))}
                 </div>
 
+                <ReCAPTCHA sitekey={import.meta.env.VITE_SITE_KEY} ref={captchaRef}/>
+                
+                <div className={err?style.err:style.noneDisplay}>
+                    You need to check the box to continue...
+                </div>
+                
                 <div className={style.actions}>
                     <Button tag={'secondary'} width={'30%'}>Cancle</Button>
-                    <Button tag={'primary'}>I have read and agree with the terms of use</Button>
+                    <Button tag={'primary'} onClickCallback={handleVerify}>I have read and agree with the terms of use</Button>
                 </div>
 
             </div>

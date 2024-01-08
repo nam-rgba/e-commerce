@@ -21,7 +21,8 @@
 }
 
 .outlet {
-    min-height: 18rem;
+    margin-top: 2rem;
+    min-height: 20rem;
     animation: fadeIn 1s ease-out;
 }
 

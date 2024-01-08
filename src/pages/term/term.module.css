@@ -58,5 +58,11 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+}
+
+.err {
+    color: red;
+    font-style: italic;
+    font-size: 14px;
 }

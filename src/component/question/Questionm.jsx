@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import style from './question.module.css';
 import { addAnswer } from '../../state/surveySlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
-export default function Question2({handleCheckDone}){
+export default function Question2({handleCheckDone, ques}){
     const dispatch = useDispatch();
     const answer = useSelector(state => state.survey.answers);
-    const languages=['English','Vietnam','Chinese','Japanese','Spanish','French'];
+    const languages=ques.answers;
     const [selectedLang, setSelectedLang]=useState(answer[1]||[]);
     const [selectAll, setSelectAll]=useState(false);
 
@@ -31,10 +32,13 @@ export default function Question2({handleCheckDone}){
             setSelectedLang((prevSelectedLang) => [...prevSelectedLang, value]);
         }
         setSelectAll(languages.length === selectedLang.length + 1);
-        if(selectedLang.length > 0){
-            handleCheckDone(true);
-        }
+        
     };
+    if(selectedLang.length > 0){
+        handleCheckDone(true);
+    }else{
+        handleCheckDone(false);
+    }
 
     const handleSelectAll = (event) => {
         if (event.target.checked) {
@@ -51,7 +55,7 @@ export default function Question2({handleCheckDone}){
 
     return (
         <div>
-            <h2>What languge spoken in you household?</h2>
+            <h2>{ques.title}</h2>
             <form >
                 <div className={style.selectedLan}>
                     {string}

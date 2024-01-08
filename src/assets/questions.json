@@ -1,0 +1,24 @@
+{
+    "_comment": "type s: selection, m: multiple, t: text",
+    "questions": [    
+         
+        {
+            
+            "type":"s",
+            "title":"What is your role within the family?",
+            "answers": ["Mother", "Father", "Prefer not to say"]
+        },
+        {
+            
+            "type":"m",
+            "title":"What languge spoken in you household?",
+            "answers": ["English", "Vietnam", "Chinese", "Japanese", "Spanish", "French"]
+        },
+
+        {
+           
+            "type":"t",
+            "title":"Please tell us which touch screen game, app or story you use most often with your child and why?"
+        }
+    ]
+}

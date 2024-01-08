@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import style from './question.module.css'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,7 +6,7 @@ import { addAnswer } from '../../state/surveySlice';
 
 
 // eslint-disable-next-line react/prop-types
-export default function Question3({handleCheckDone}){
+export default function Question3({handleCheckDone, ques}){
     const dispatch=useDispatch();
     const answer = useSelector(state => state.survey.answers);
     const MAX_LENGTH=2000;
@@ -24,14 +25,18 @@ export default function Question3({handleCheckDone}){
     },[textAnswer, dispatch]);
     const handleChangeAnswer = (e) =>{
         setTextAnswer(e.target.value)
-        if(textAnswer!==''){
-            handleCheckDone(true);
-        }
     }
+
+    console.log(textAnswer)
+    if(textAnswer!=''){
+        handleCheckDone(true);
+    }else{
+        handleCheckDone(false);
+    }
+    
     return (
         <div>
-            <h2>Please tell us which touch screen game, app or story you use most often
-                with your child and why?
+            <h2>{ques.title}
             </h2>
 
             <textarea  className={isUpToMaxLength ?style.limited: style.textarea}
