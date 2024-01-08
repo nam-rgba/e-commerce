@@ -1,6 +1,6 @@
 # RUN GUIDE:
 1. Clone project : https://git.g4b.gameloft.com/g4b-recruitment/frontend-programmer-intern-test-submission/doan-ngoc-nam.git
-2. Open terminal in root folder of project (survey)
+2. Open terminal in root folder of project (survey or doan-ngoc-nam)
 3. Run: `npm i` 
 4. Run: `npm run dev`
 5. Open browser and go to: [localhost:5173]
